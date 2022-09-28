@@ -31,14 +31,7 @@ public class Lab1
         double secondsPerMiles = total_seconds / MILES_PER_MARATHON;
  
         aveSecsPerMile = secondsPerMiles % 60;
- 
-        /*
-         
-        aveMinsPerMile = (secondsPerMiles / 60);
-         
-        This was the code causing the issue
-        */
- 
+
         aveMinsPerMile = (int)(secondsPerMiles / 60);
  
  
