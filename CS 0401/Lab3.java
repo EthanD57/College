@@ -40,8 +40,7 @@ public class Lab3
         // PRINT EACH NUMBER WITH A SPACE AFTER IT
         for (int number: array) 
         {
-        System.out.println(number);
-        System.out.println(); 
+        System.out.print(number + " ");
         }
     }
     
@@ -61,19 +60,19 @@ public class Lab3
     {
         for(int i = 0; i <= count; i++)
         {
-            if(arr.length == 0)
+            if(i == 0)
             {
-                arr[0] = newVal;
+                arr[i] = newVal;
                 break;
             }
 
             if(newVal < arr[i])
             {
-                for(int j = count; j > i; j--)
+                for(int j = count; j <= i; j++)
                 {
-                    arr[j] = arr[j+1];
+                   arr[j+1] = arr[j];
                 }
-                arr[i] = newVal;
+                
             }
         }
     }
