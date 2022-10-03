@@ -1,6 +1,7 @@
 // STARTER FILE LAB #3 
 
 import java.util.*;
+
 import java.io.*;
 
 public class Lab3
@@ -37,18 +38,43 @@ public class Lab3
     static void printArray( int[] array )
     {
         // PRINT EACH NUMBER WITH A SPACE AFTER IT
-        System.out.println(); // LEAVE THIS HERE
+        for (int number: array) 
+        {
+        System.out.println(number);
+        System.out.println(); 
+        }
     }
     
     static int[] trimArray( int[] array, int count  )
     {
-        return array; // THIS IS NOT CORRECT. YOU MUST REPLACE IT!!!!
+        int[] temp = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+           temp[i] = array[i];
+        }
+        return temp;
     }
     
    
     // THE CODE IN HERE NOW JUST APPENDS. THIS IS NOT CORRECT
     static void insertInOrder( int[] arr, int count, int newVal   )
     {
-        arr[count] = newVal; // THIS IS NOT CORRECT. YOU MUST REPLACE IT!!
+        for(int i = 0; i <= count; i++)
+        {
+            if(arr.length == 0)
+            {
+                arr[0] = newVal;
+                break;
+            }
+
+            if(newVal < arr[i])
+            {
+                for(int j = count; j > i; j--)
+                {
+                    arr[j] = arr[j+1];
+                }
+                arr[i] = newVal;
+            }
+        }
     }
 }// END LAB #3
