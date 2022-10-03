@@ -72,7 +72,8 @@ public class Lab3
                 {
                    arr[j+1] = arr[j];
                 }
-                
+                arr[i] = newVal;
+                break;
             }
         }
     }
