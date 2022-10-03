@@ -77,7 +77,5 @@ public class Lab3
                 break;
             }
         }
-        printArray(arr);
-        System.out.println(" ");
     }
 }// END LAB #3
