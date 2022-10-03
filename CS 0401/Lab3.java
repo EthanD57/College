@@ -58,9 +58,9 @@ public class Lab3
     // THE CODE IN HERE NOW JUST APPENDS. THIS IS NOT CORRECT
     static void insertInOrder( int[] arr, int count, int newVal   )
     {
-        for(int i = 0; i <= count; i++)
+        for(int i = 0; i <= count+1; i++)
         {
-            if(i == 0)
+            if(arr[i] == 0)
             {
                 arr[i] = newVal;
                 break;
@@ -68,13 +68,16 @@ public class Lab3
 
             if(newVal < arr[i])
             {
-                for(int j = count; j <= i; j++)
+                for(int j = count; j > i; j--)
                 {
-                   arr[j+1] = arr[j];
+                   arr[j] = arr[j-1];
+                   
                 }
                 arr[i] = newVal;
                 break;
             }
         }
+        printArray(arr);
+        System.out.println(" ");
     }
 }// END LAB #3
