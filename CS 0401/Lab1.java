@@ -1,4 +1,3 @@
-import java.io.*; // I/O
 import java.util.*; // Scanner class
  
 public class Lab1
