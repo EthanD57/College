@@ -55,7 +55,7 @@ public class Project3
         return trimmedArr;
     }
     
-    // REMOVE ALL COMMENTS FROM INSERT IN ORDER JUST BEFORE HANDIN
+    // ALL OF MY CODE IS BELOW IN THESE METHODS
     static boolean insertInOrder( int[] arr, int count, int newVal )
     {
          int index = bSearch(arr, count, newVal);
@@ -95,3 +95,4 @@ public class Project3
 
     }
 }
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 

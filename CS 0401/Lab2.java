@@ -29,8 +29,9 @@ public class Lab2
 	// "Madam I'm Adam" returns "madamimadam" which is now ready for a simple palindromic test
 	// To test whether a char is alpha i.e. letter of the alphabet 
 	//
-	// READ THIS BEFORE WRITING THIS METHOD!  ==> https://docs.oracle.com/javase/tutorial/i18n/text/charintro.html
 	
+
+	//ALL OF MY CODE IS THE METHODS BELOW
 	static String toAlphaLowerCase( String s )
 	{
 		String str = "";
@@ -64,7 +65,8 @@ public class Lab2
 		return value;
 		
 	}
-} // END LAB2 CLASS
+}
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 
 
 
 
