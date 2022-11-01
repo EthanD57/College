@@ -8,7 +8,7 @@ public class Mult
 	{	// CHANGE NOTHING IN MAIN
 		System.out.println(  mult( Integer.parseInt(args[0]), Integer.parseInt(args[1]) )  );
 	}
-	// RETURN THE PRODUCT OF a * b
+//ALL OF MY CODE IS IN THIS METHOD
 	static int mult( int a, int b )
 	{
 		if (b == 0) return 0;
@@ -21,4 +21,4 @@ public class Mult
 		
 	}
 }
-
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 
