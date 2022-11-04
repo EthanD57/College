@@ -1,5 +1,4 @@
 
-import java.io.*;
 
 public class Project5
 {
@@ -41,7 +40,7 @@ public class Project5
 
 		// I S S O R T E D 
 		// perturb values as needed to test for your own benefit on an unsorted array (we will test on an unserted too)
-		int[] array = { 7, 8, 12, 20, 21, 22, 37, 41, 55, 60, 65, 85, 83, 84, 87 };
+		int[] array = { 7, 8, 12, 20, 21, 22, 37, 41, 55, 60, 65, 74, 83, 84, 87 };
 		int startingAt=0;
 		boolean isSorted = isSorted( array, startingAt, array.length );
 		System.out.print( "array: ");
@@ -53,13 +52,15 @@ public class Project5
 
 
 		// P A L I N D R O M E
-		String s = "STANLEYYELNATS"; // try with several differnt values that are or not palindromes	
+		String s = "stanleyyelnats"; // try with several differnt values that are or not palindromes	
 		if ( isPalindrome( s, 0, s.length()-1 ) )
 			System.out.format("%s IS a palindrome\n", s );	
 		else
 			System.out.format("\n%s NOT a palindrome\n", s ); 	
 		
-	} // END MAIN
+	} 
+
+	//ALL OF THE CODE IN THE BELOW METHODS IS MY CODE -----------------------------------------------
 
 	// count stars in a triangle using # of rows as input
 	static int triStars(int rows)  
@@ -88,21 +89,18 @@ public class Project5
 	// the number 8802388 will return a count of 5  even tho only 4 literal 8 are there
 	static int count8s(int n) 
 	{	
-		int lastDigit = 0;
 		
 		if (n == 0)
 		return n;
 
 		if (n%10 == 8)
 		{
-			if(lastDigit == 8 && n%10 == 8)
+			if(n%100 ==8 && n%10 == 8)
 			{
-				lastDigit = n%10;
 				return 2 + count8s(n/10);
 			}
 			else
 			{
-				lastDigit = n%10;
 				return 1 + count8s(n/10);
 			}
 		}
@@ -133,6 +131,5 @@ public class Project5
 		if (lo == hi) return isPalindrome(s, lo+1, hi-1);
 		return true;
 	}
-} // END CLASS Project5
-	
-	
+}
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 
