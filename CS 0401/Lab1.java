@@ -39,7 +39,7 @@ public class Lab1
  
         aveMPH = MILES_PER_MARATHON / total_seconds;
  
-        //END OF MY CODE
+        //END OF MY CODE --------------------------------------------------------------------------------
 
         // DO NOT WRITE OR MODIFY ANYTHING BELOW THIS LINE. JUST LET MY CODE PRINT THE VALUES YOU PUT INTO THE 3 VARS
         System.out.println();
