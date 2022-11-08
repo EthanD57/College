@@ -45,7 +45,7 @@ public class Project1
  
         // D O N T  M O D I F Y  A N Y T H I N G   A B O V E
  
-        // ALL YOUR CODE GOES IN HERE
+    // ALL MY CODE IS BELOW THIS LINE
  
         mphOver = driverSpeed - speedLimit; 
         int mph_multi = mphOver / 5;
@@ -82,11 +82,9 @@ public class Project1
         }
          
  
-        // they have to  be more than 5 over for them to possibly get any fines 
-        // get the correct values into each for the 4 fines: base, zone, underage and total
- 
- 
-        // D O N T  M O D I F Y  A N Y T H I N G   B E L O W
+        //END OF MY CODE --------------------------------
+
+    
  
         System.out.println( "\n" +
         "Driver Name: " + lastName + ", " + firstName + "\n" +
@@ -101,3 +99,4 @@ public class Project1
  
     } // END MAIN METHOD
 }
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 

@@ -55,7 +55,7 @@ public class Lab3
     }
     
    
-    // THE CODE IN HERE NOW JUST APPENDS. THIS IS NOT CORRECT
+  //ALL OF MY CODE IS IN THE METHOD BELOW
     static void insertInOrder( int[] arr, int count, int newVal   )
     {
         for(int i = 0; i <= count+1; i++)
@@ -79,3 +79,4 @@ public class Lab3
         }
     }
 }// END LAB #3
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 

@@ -53,7 +53,7 @@ public class Project2
 		}
 	} // END MAIN
 	
-	// *************** YOU FILL IN THE METHODS BELOW **********************
+	// ***************MY CODE IS IN THE METHODS BELOW **********************
 	
 	// RETURNs true if and only if the number passed in is perfect
 	static boolean isPerfect( int n )
@@ -97,8 +97,8 @@ public class Project2
 		}
 		return prime;
 	}
-} // END Project2 CLASS
-
+} 
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 
 
 
 

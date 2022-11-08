@@ -18,7 +18,8 @@ public class Lab1
         // DO NOT WRITE OR MODIFY ANYTHING ABOVE THIS LINE
  
          
-        //  - - - - - - - - - - - A L L   Y O U R   C O D E   H E R E - - - - - - - - - - - - - - - 
+        //  - - - - - - - - - - - ALL OF MY CODE IS BELOW THIS LINE - - - - - - - - - - - - - - - 
+        
         int h = input.nextInt();
         int m = input.nextInt();
         int s = input.nextInt();
@@ -38,7 +39,8 @@ public class Lab1
  
         aveMPH = MILES_PER_MARATHON / total_seconds;
  
- 
+        //END OF MY CODE
+
         // DO NOT WRITE OR MODIFY ANYTHING BELOW THIS LINE. JUST LET MY CODE PRINT THE VALUES YOU PUT INTO THE 3 VARS
         System.out.println();
         System.out.format("Average MPH was: %.2f mph\n", aveMPH  );
@@ -46,4 +48,6 @@ public class Lab1
         System.out.println();
  
     } // END MAIN METHOD
-} // EOF
+} 
+
+//A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODING SECTION INDICATED WAS MADE BY ME. 
