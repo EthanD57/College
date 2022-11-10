@@ -16,7 +16,6 @@ public class Lab1 {
         // DO NOT WRITE OR MODIFY ANYTHING ABOVE THIS LINE
 
         // - - - - - - - - - - - ALL OF MY CODE IS BELOW THIS LINE - - - - - - - - - - -
-        // - - - -
 
         int h = input.nextInt();
         int m = input.nextInt();
@@ -39,14 +38,12 @@ public class Lab1 {
         // END OF MY CODE
         // --------------------------------------------------------------------------------
 
-        // DO NOT WRITE OR MODIFY ANYTHING BELOW THIS LINE. JUST LET MY CODE PRINT THE
-        // VALUES YOU PUT INTO THE 3 VARS
         System.out.println();
         System.out.format("Average MPH was: %.2f mph\n", aveMPH);
         System.out.format("Average mile split was %.0f mins %.1f seconds per mile", aveMinsPerMile, aveSecsPerMile);
         System.out.println();
 
-    } // END MAIN METHOD
+    }
 }
 
 // A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODE SECTION INDICATED WAS MADE

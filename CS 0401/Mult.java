@@ -1,6 +1,3 @@
-// EXTRA CREDIT PROGRAM CMPINF 401 FALLL 2021.  WORTH 1% COURSE CREDIT
-import java.util.*;
-import java.io.*;
 
 public class Mult
 {

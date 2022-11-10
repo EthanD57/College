@@ -5,23 +5,17 @@ public class Project1 {
     public static void main(String args[]) {
         Scanner kbd = new Scanner(System.in);
 
-        final int MPH_INCREMENT = 5; // user pays either $30 or $50
-                                     // for every 5mp overlimit
-        final int LOW_RATE = 30; // if not more than 20 over limit then
-                                 // driver pays only $30 per every 5mph over limit
-        final int HIGH_RATE = 50; // if driver over limit by more than 20
-                                  // driver pays $50 per every 5mph over limit
-        final int HIGHRATE_OVERLIMIT = 20; // if driver is more than 20 over
-        // driver pays the HIGH_RATE
-        final int UNDERAGE_SPEEDER_FINE = 300; // applied to flagrant
-        final int MINOR_AGE = 20; // flagrant speeders this age or under are penalized with
-                                  // the underage speeder fine
-        String firstName, lastName; // driver's name
-        int age; // in whole years
-        int speedLimit = 0, driverSpeed = 0, mphOver = 0; // legal, actual, difference
-        int rate; // how much to charge per 5 (or whatever) mph over
-        int baseFine = 0, zoneFine = 0, underAgeFine = 0; // 3 components of total fine
-        boolean inZone = false; // did violation occur in a construction zone
+        final int LOW_RATE = 30; 
+        final int HIGH_RATE = 50; 
+        final int HIGHRATE_OVERLIMIT = 20; 
+        
+        final int UNDERAGE_SPEEDER_FINE = 300; 
+        String firstName, lastName; 
+        int age; 
+        int speedLimit = 0, driverSpeed = 0, mphOver = 0; 
+        int rate; 
+        int baseFine = 0, zoneFine = 0, underAgeFine = 0; 
+        boolean inZone = false;
 
         System.out.print("Driver's first name? ");
         firstName = kbd.next();
@@ -39,11 +33,8 @@ public class Project1 {
         age = kbd.nextInt();
 
         System.out.print("Did violation occur in construction zone? ");
-        inZone = kbd.nextBoolean(); // must enter exactly "true" or "false" (case IN-sensitive)
+        inZone = kbd.nextBoolean(); 
 
-        // D O N T M O D I F Y A N Y T H I N G A B O V E
-
-        // ALL MY CODE IS BELOW THIS LINE
 
         mphOver = driverSpeed - speedLimit;
         int mph_multi = mphOver / 5;
@@ -82,7 +73,7 @@ public class Project1 {
                 "Underage Fine: $" + underAgeFine + "\n" +
                 "Total Fine: $" + (baseFine + zoneFine + underAgeFine));
 
-    } // END MAIN METHOD
+    } 
 }
 // A STARTER FILE WAS GIVEN FOR THIS CODE. THE CODE SECTION INDICATED WAS MADE
 // BY ME.
