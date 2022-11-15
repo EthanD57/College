@@ -55,13 +55,11 @@ public class Fraction {
 	}
 
 	public Fraction add(Fraction that) {
-		return new Fraction((this.getNumer() * that.getDenom()) + (this.getDenom() * that.getNumer()),
-				(this.getDenom() * that.getDenom()));
+		return new Fraction((this.getNumer() * that.getDenom()) + (this.getDenom() * that.getNumer()),(this.getDenom() * that.getDenom()));
 	}
 
 	public Fraction subtract(Fraction that) {
-		return new Fraction((this.getNumer() * that.getDenom() - this.getDenom() * that.getNumer()),
-				(this.getDenom() * that.getDenom()));
+		return new Fraction((this.getNumer() * that.getDenom() - this.getDenom() * that.getNumer()),(this.getDenom() * that.getDenom()));
 	}
 
 	public Fraction multiply(Fraction that) {
