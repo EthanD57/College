@@ -46,14 +46,6 @@ public class ComparableFraction implements Comparable<ComparableFraction>
 		if (diff.getNumer() > 0 && diff.getDenom() > 0) return 1;
 		else if (diff.getNumer() < 0 || diff.getDenom() <0) return -1;
 		return 0;
-		// you are only allowed to define one variable in this method
-		// that variable should be a Fraction whose value is this - other  
-		// HINT: copy in your subtract() method from project 7 and RE-USE it not rewrite it 
-		// now you can just examin the numer and denom of your diff fraction
-		// to determine that fraction is postive negative or 0
-		// return 0 -1 or 1 accordingly
-		// NO OTHER VARIABLES Of ANY KIND
-		// NO DOUBLES, NO CASTING
 	}
 	public ComparableFraction subtract(ComparableFraction that) 
 	{
@@ -63,4 +55,5 @@ public class ComparableFraction implements Comparable<ComparableFraction>
 	{
 		return getNumer() +  "/" + getDenom() + "\t=" +  + ((double)getNumer()/(double)getDenom()); 
 	}
-}// EOF
+}
+//A STARTER FILE WAS GIVEN. ONLY THE "subtract" METHOD AND THE "compareTo" METHOD WERE WRITTEN BY ME. 
