@@ -15,7 +15,7 @@ public class Project8
 
 				if (y < 1 || y > 100)
 				{
-					throw new NumberOutOfRangeException();
+					NumberOutOfRangeException e = new NumberOutOfRangeException();
 				}
 				else
 				{
@@ -35,7 +35,7 @@ class NumberOutOfRangeException extends Exception
 {
 	public NumberOutOfRangeException()
 	{
-		super("Number out of range. Must be in 1...100 inclusive: ");
+		System.out.println("Number out of range. Must be in 1...100 inclusive. ");
 	}	
 }
 //A STARTER FILE WAS GIVEN. ONLY THE CODE INSIDE THE DO LOOP WAS WRITTEN BY ME.
