@@ -38,4 +38,4 @@ class NumberOutOfRangeException extends Exception
 		System.out.println("Number out of range. Must be in 1...100 inclusive. ");
 	}	
 }
-//A STARTER FILE WAS GIVEN. ONLY THE CODE INSIDE THE DO LOOP WAS WRITTEN BY ME.
+//A STARTER FILE WAS GIVEN. ONLY THE CODE INSIDE THE DO LOOP AND CLASS "NumberOutOfRangeException" WAS WRITTEN BY ME.
