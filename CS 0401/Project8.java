@@ -1,13 +1,11 @@
-package Lab8;
-
 import java.util.*;
 
-public class Exercise2
+public class Project8
 {
 	public static void main( String args[] )
 	{
-		System.out.print("Enter int in range 1..100 inclusive: ");
 		do{
+			System.out.print("Enter int in range 1..100 inclusive: ");
 			Scanner input = new Scanner(System.in);
 
 			try{
@@ -17,7 +15,7 @@ public class Exercise2
 
 				if (y < 1 || y > 100)
 				{
-					throw new ArithmeticException("Number out of range");
+					throw new NumberOutOfRangeException();
 				}
 				else
 				{
@@ -27,11 +25,17 @@ public class Exercise2
 			}
 			catch (Exception e)
 			{
-				System.out.print("Invalid input. Please enter an integer in the range 1..100 inclusive. ");
+				System.out.println("Input was not an integer. ");
 			}
 		} while (true);
 	}
-		
-		
+}
+
+class NumberOutOfRangeException extends Exception
+{
+	public NumberOutOfRangeException()
+	{
+		super("Number out of range. Must be in 1...100 inclusive: ");
+	}	
 }
 //A STARTER FILE WAS GIVEN. ONLY THE CODE INSIDE THE DO LOOP WAS WRITTEN BY ME.
