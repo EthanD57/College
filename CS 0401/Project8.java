@@ -10,22 +10,30 @@ public class Project8
 
 			try{
 
-				String token = input.next();
-				int y = Integer.parseInt(token);
+				int token = input.nextInt();
 
-				if (y < 1 || y > 100)
+				if (token < 1 || token > 100)
 				{
-					NumberOutOfRangeException e = new NumberOutOfRangeException();
+					throw new NumberOutOfRangeException();
 				}
 				else
 				{
-					System.out.format("Thank you. You entered %d\n", y);
+					System.out.format("Thank you. You entered %d\n", token);
 					break;
 				}
 			}
+			catch (NumberOutOfRangeException e)
+			{
+				
+			}
+			catch (InputMismatchException e)
+			{ 
+				System.out.println("Input was not an integer");
+			}
 			catch (Exception e)
 			{
-				System.out.println("Input was not an integer. ");
+				System.out.println(e);
+				System.exit(0);
 			}
 		} while (true);
 	}
