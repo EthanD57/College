@@ -5,6 +5,7 @@ public class Lab1 {
         final double MILES_PER_MARATHON = 26.21875; // i.e 26 miles 285 yards
 
         Scanner input = new Scanner(System.in);
+        
 
         // THE FOLLOWING THREE VARIABLES ARE PRINTED OUT AT THE END OF THE PROGRAM
         double aveMPH = 0, aveMinsPerMile = 0, aveSecsPerMile = 0;
@@ -20,6 +21,7 @@ public class Lab1 {
         int h = input.nextInt();
         int m = input.nextInt();
         int s = input.nextInt();
+        input.close();
 
         double total_seconds = 0.0;
 

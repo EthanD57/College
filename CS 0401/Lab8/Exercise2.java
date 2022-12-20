@@ -6,9 +6,10 @@ public class Exercise2
 {
 	public static void main( String args[] )
 	{
+		Scanner input = new Scanner(System.in);
+
 		System.out.print("Enter int in range 1..100 inclusive: ");
 		do{
-			Scanner input = new Scanner(System.in);
 
 			try{
 
@@ -30,6 +31,7 @@ public class Exercise2
 				System.out.print("Invalid input. Please enter an integer in the range 1..100 inclusive. ");
 			}
 		} while (true);
+		input.close();
 	}
 		
 		

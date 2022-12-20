@@ -37,8 +37,9 @@ public class Project8
 			}
 		} while (true);
 	}
-}
 
+
+}
 class NumberOutOfRangeException extends Exception
 {
 	public NumberOutOfRangeException()

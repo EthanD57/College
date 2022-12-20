@@ -32,9 +32,10 @@ public class Project1 {
         System.out.print("Driver's age in yrs? ");
         age = kbd.nextInt();
 
-        System.out.print("Did violation occur in construction zone? ");
+        System.out.print("Did violation occur in construction zone? (true/false) ");
         inZone = kbd.nextBoolean(); 
 
+        kbd.close();
 
         mphOver = driverSpeed - speedLimit;
         int mph_multi = mphOver / 5;

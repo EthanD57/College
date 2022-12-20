@@ -12,8 +12,6 @@ public class Exercise1
 			System.out.println("\nYou must enter an input filename on cmd line!\n");
 			System.exit(0);
 		}
-    boolean x = true;
-
     do
     {
 		try (Scanner input = new Scanner(new File(args[0])))
@@ -23,7 +21,6 @@ public class Exercise1
                 String token = input.next();
                 System.out.println(token);
             }
-            x = false;
             break;
         }
         catch (FileNotFoundException e)
@@ -34,7 +31,7 @@ public class Exercise1
             args[0] = filename;
         }
 		
-    } while (x = true);
+    } while (true);
 		
 		
 	}

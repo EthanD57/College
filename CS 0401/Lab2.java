@@ -13,7 +13,6 @@ public class Lab2
 			System.exit(0);
 		}
 		BufferedReader infile = new BufferedReader (new FileReader( args[0] )); // we read our text file line by line
-		int lineNum=0;
 		while( infile.ready() ) // ifile.ready() means "while there are any lines left in file"
 		{
 			String line = toAlphaLowerCase(infile.readLine()); 
@@ -22,7 +21,9 @@ public class Lab2
 			else
 				System.out.format("<%s> NOT palindrome.\n",line);
 		}
-	} // END MAIN
+		infile.close();
+	}
+	 // END MAIN
 	
 	// ******* MODIFY NOTHING ABOVE  THIS   LINE YOU FILL IN THE METHODS BELOW *******	
 	// RETURNS A STRING WITH ALL NON ALPHABETIC CHARS REMOVED. ALL REMAINING ARE ALPHAS CONVERTED TO LOWER CASE
