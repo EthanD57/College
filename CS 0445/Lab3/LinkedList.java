@@ -1,6 +1,8 @@
+package Lab3;
 public class LinkedList<T>
 {
-	private Node<T> head;
+	private Node
+	<T> head;
 
 	public LinkedList()
 	{
@@ -9,14 +11,16 @@ public class LinkedList<T>
 
 	public void insertAtFront(T data)
 	{
-		head = new Node<T>(data,head);
+		head = new Node
+		<T>(data,head);
 	}
 
 	public String toString()
 	{
 		String toString = "";
 
-		for (Node<T> curr = head; curr != null; curr = curr.getNext())
+		for (Node
+		<T> curr = head; curr != null; curr = curr.getNext())
 		{
 			toString += curr.getData();
 			if (curr.getNext() != null)
@@ -31,7 +35,8 @@ public class LinkedList<T>
 
 	public void insertAtTail(T data)
 	{
-		Node<T> temp = head;
+		Node
+		<T> temp = head;
 		if (head == null)
 		{
 			insertAtFront(data);
@@ -42,7 +47,8 @@ public class LinkedList<T>
 			{
 				temp = temp.getNext();
 			}
-			temp.setNext(new Node<T>(data));
+			temp.setNext(new Node
+			<T>(data));
 		}
 		
 	
@@ -51,7 +57,8 @@ public class LinkedList<T>
 
 	public int size()
 	{
-		Node<T> temp = head;
+		Node
+		<T> temp = head;
 		int count = 1;
 		while (temp.getNext() != null)
 			{
@@ -68,9 +75,11 @@ public class LinkedList<T>
 		return search(key) == null ? false : true;
 	}
 
-	public Node<T> search( T key )
+	public Node
+	<T> search( T key )
 	{
-		Node<T> temp = head;
+		Node
+		<T> temp = head;
 		if (head == null) return null;;
 
 		while (temp.getNext() != null)

@@ -4,7 +4,7 @@ import java.io.*;
 
 public class LinkedList <T extends Comparable<T>> 
 {
-	private Node<T> head;  
+	private Node2<T> head;  
 
 	public LinkedList()
 	{
@@ -37,7 +37,7 @@ public class LinkedList <T extends Comparable<T>>
 
 	public void insertAtFront(T data)
 	{
-		head = new Node<T>(data,head);
+		head = new Node2<T>(data,head);
 	}
 
 
@@ -45,7 +45,7 @@ public class LinkedList <T extends Comparable<T>>
 	{
 		String toString = "";
 
-		for (Node<T> curr = head; curr != null; curr = curr.next )
+		for (Node2<T> curr = head; curr != null; curr = curr.next )
 		{
 			toString += curr.data;
 			if (curr.next != null)
@@ -63,7 +63,7 @@ public class LinkedList <T extends Comparable<T>>
 	{
 		int count = 0;
         if (head == null) return 0;
-		for (Node<T> temp = head; temp != null; temp = temp.next )
+		for (Node2<T> temp = head; temp != null; temp = temp.next )
 		{
 			count++;
 		}
@@ -80,11 +80,11 @@ public class LinkedList <T extends Comparable<T>>
 		return search(key) == null ? false : true;
 	}
 
-	public Node<T> search( T key )
+	public Node2<T> search( T key )
 	{
 		if (head == null) return null;
 
-		for (Node<T> temp = head; temp != null; temp = temp.next )
+		for (Node2<T> temp = head; temp != null; temp = temp.next )
 		{
 			if (temp.next.data.equals(key))
 			{
@@ -97,7 +97,7 @@ public class LinkedList <T extends Comparable<T>>
 
 	public void insertAtTail(T data)
 	{
-		Node<T> temp = head;
+		Node2<T> temp = head;
 		if (head == null)
 		{
 			insertAtFront(data);
@@ -108,14 +108,14 @@ public class LinkedList <T extends Comparable<T>>
 			{
 				temp = temp.next;
 			}
-			temp.setNext(new Node<T>(data));
+			temp.setNext(new Node2<T>(data));
 		}
 		
 	}
 	
 	public void insertInOrder(T  data)
 	{
-		Node<T> temp = head;
+		Node2<T> temp = head;
 		int length = this.size();
 		int count = 0;
         if (temp == null)
@@ -133,24 +133,24 @@ public class LinkedList <T extends Comparable<T>>
                 }
 				else if (temp.data.compareTo(data) < 0 && temp.next == null)
 				{
-					temp.setNext(new Node<T>(data, temp.next));
+					temp.setNext(new Node2<T>(data, temp.next));
 					return;
 				}
                 else if (temp.data.compareTo(data) < 0 && temp.next.data.compareTo(data) > 0)
                 {
-                    temp.setNext(new Node<T>(data, temp.next));
+                    temp.setNext(new Node2<T>(data, temp.next));
                     return;
                 }
                 temp = temp.next;
 				count++;
             }
-            temp.next = new Node<T>(data);
+            temp.next = new Node2<T>(data);
         }
     }
 
 	public boolean remove(T key)
 	{
-		Node<T> temp = head;
+		Node2<T> temp = head;
 		if (head == null) return false;
 		else if (head.data.equals(key)) 
 		{
@@ -172,7 +172,7 @@ public class LinkedList <T extends Comparable<T>>
 
 	public boolean removeAtTail()	// RETURNS TRUE IF THERE WAS NODE TO REMOVE
 	{
-		Node<T> secondToLast = head;
+		Node2<T> secondToLast = head;
 		if (head == null) return false;
 		if (head.next == null)
 		{
@@ -198,8 +198,8 @@ public class LinkedList <T extends Comparable<T>>
 	public LinkedList<T> union( LinkedList<T> other )
 	{
 		LinkedList<T> union = new LinkedList<T>();
-		Node<T> set1 = head;
-		Node<T> set2 = other.head;
+		Node2<T> set1 = head;
+		Node2<T> set2 = other.head;
 		while (set1 != null)
 		{
 			union.insertAtTail(set1.data);
@@ -207,7 +207,7 @@ public class LinkedList <T extends Comparable<T>>
 		}
 		while (set2 != null)
 		{
-			for (Node<T> temp = union.head; temp != null; temp = temp.next)
+			for (Node2<T> temp = union.head; temp != null; temp = temp.next)
 			{
 				if (temp.data.equals(set2.data)) break;
 				else if (temp.next == null)
@@ -225,9 +225,9 @@ public class LinkedList <T extends Comparable<T>>
 	public LinkedList<T> inter( LinkedList<T> other )
 	{
 		LinkedList<T> inter = new LinkedList<T>();
-		for (Node<T> set1 = head; set1 != null; set1 = set1.next)
+		for (Node2<T> set1 = head; set1 != null; set1 = set1.next)
 		{
-			for (Node<T> set2 = other.head; set2 != null; set2 = set2.next)
+			for (Node2<T> set2 = other.head; set2 != null; set2 = set2.next)
 				{
 					if (set1.data.equals(set2.data))
 					{
@@ -241,10 +241,10 @@ public class LinkedList <T extends Comparable<T>>
 	public LinkedList<T> diff( LinkedList<T> other )
 	{
 		LinkedList<T> diff = new LinkedList<T>();
-		Node<T> set1 = head;
+		Node2<T> set1 = head;
 		while (set1 != null)
 		{
-			for (Node<T> temp = other.head; temp != null; temp = temp.next)
+			for (Node2<T> temp = other.head; temp != null; temp = temp.next)
 			{
 				if (set1.data.equals(temp.data)) break;
 				else if (temp.next == null)
@@ -266,29 +266,29 @@ public class LinkedList <T extends Comparable<T>>
 
 
 
-class Node<T extends Comparable<T>> 
+class Node2<T extends Comparable<T>> 
 
 {
   T data;
-  Node<T> next;
+  Node2<T> next;
 
-  public Node()
+  public Node2()
   {
     this( null, null );
   }
 
-  public Node(T data)
+  public Node2(T data)
   {
     this( data, null );
   }
 
-  public Node(T data, Node<T> next)
+  public Node2(T data, Node2<T> next)
   {
     this.data = data;
     this.next = next;
   }
 
-  public void setNext(Node<T> next)
+  public void setNext(Node2<T> next)
   {
     this.next = next;
   }
@@ -300,4 +300,4 @@ class Node<T extends Comparable<T>>
 } 
 
 //A starter file was provided for Project 3 by Timothy Hoffman for CS 0445. 
-//Only the methods below the indicated line were written by me. I did not write the Node Class. 
+//Only the methods below the indicated line were written by me. I did not write the Node2 Class. 

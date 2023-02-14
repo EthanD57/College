@@ -1,14 +1,12 @@
-package Lab3;
 import java.io.*;
 
-
-public class LinkedListTester
+public class LL_RecursiveTester
 {
 	public static void main( String args[] ) throws Exception
 	{
 		if ( args.length < 2 )
-			die( "FATAL ERROR: must enter two filenames on command line.\n   java LinkedListTester set1.txt  set2.txt\n" );
-		LinkedList<String> myList = new LinkedList<String>();
+			die( "FATAL ERROR: must enter two filenames on command line.\n   java LL_RecursiveTester set1.txt  set2.txt\n" );
+		LL_Recursive<String> myList = new LL_Recursive<String>();
 		// READ IN THE FILE NAMED BY args[0]
 		BufferedReader infile0 = new BufferedReader( new FileReader( args[0] ) );
 		while ( infile0.ready() )
@@ -37,7 +35,8 @@ public class LinkedListTester
 		System.out.println( errMsg );
 		System.exit(0); // kills program
 	}
-} 
+} // EOF
 
-//This is a starter file for Lab 3.  You will need this file to run LinkedList.java
-//This file was written by Timothy Hoffman for CS 0445 at the University of Pittsburgh. I did not write this file.
+
+//This file was provided by the proffessor to be ran with LL_Recursive.java. 
+//I did not write this file. 
