@@ -12,6 +12,9 @@ public class Pacs
 			
 			TreeMap<String, TreeSet<String>> pacToMembers = new TreeMap<String, TreeSet<String>>(); // THE MAP THAT GETS PRINTED	
 			
+
+//MY CODE STARTS HERE
+
 			while (memberToPacsFile.ready())
 			{
 				String[] words = memberToPacsFile.readLine().split(" ");
@@ -29,7 +32,7 @@ public class Pacs
 			}
 			for (String pac : allPacs)
 			{
-				System.out.print(pac + ": ");
+				System.out.print(pac + " ");
 				for (String member : pacToMembers.keySet())
 				{
 					if (pacToMembers.get(member).contains(pac))
@@ -43,3 +46,5 @@ public class Pacs
 	}
 	} // END MAIN
 } // CLASS
+
+//A starter file was provided for this project. I only wrote the code below the indicated line.
