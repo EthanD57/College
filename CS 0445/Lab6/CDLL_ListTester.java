@@ -1,9 +1,8 @@
-import java.io.*;
-import java.util.*;
+package Lab6;
 
 public class CDLL_ListTester
 {
-	@SuppressWarnings("unchecked")
+	
 	public static void main( String args[] ) throws Exception
 	{
 		String[] keys = { "charlie", "golf", "bravo", "dragonfly" }; // WE WILL SEARCH THE LISTS FOR THESE
@@ -20,3 +19,6 @@ public class CDLL_ListTester
 		
 	} // END MAIN
 } // END CDLL_ListTester CLASS
+
+
+//I did not write this file. This was given by the professor. 

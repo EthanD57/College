@@ -1,10 +1,9 @@
+package Lab6;
 import java.io.*;
-import java.util.*;
 
 public class CDLL_List<T>
 {
 	private CDLL_Node<T> head;  // pointer to the front (first) element of the list
-	private int count=0;
 
 	public CDLL_List()
 	{
@@ -38,52 +37,85 @@ public class CDLL_List<T>
 	// ########################## Y O U   W R I T E / F I L L   I N   T H E S E   M E T H O D S ########################
 
 	// OF COURSE MORE EFFICIENT TO KEEP INTERNAL COUNTER BUT YOU COMPUTE IT DYNAMICALLY WITH A TRAVERSAL LOOP
-	@SuppressWarnings("unchecked")
 	public int size()
 	{
-		return 0;
+		CDLL_Node<T> temp = head;
+		int count = 1;
+		temp = temp.next;
+		while (temp != head)
+			{
+				temp = temp.next;
+				count++;
+			} 
+			return count;
 	}
 
-
-	// TACK A NEW NODE ONTO THE FRONT OF THE LIST
 	
 	public void insertAtFront(T data)
 	{
-		// you could call insertAtTail here
-		// then "adjust" the head pointer
+		insertAtTail(data);
+		head = head.prev;
 	}
 
-	// TACK ON NEW NODE AT END OF LIST
-	@SuppressWarnings("unchecked")
+	
 	public void insertAtTail(T data)
 	{
-		// you could call insertAtFront here
-		// then "adjust" the head pointer
- 	
+		if (head == null)
+		{
+			head = new CDLL_Node<T>(data, head, head);
+			head.next = head;
+			head.prev = head;
+		}
+		else
+		{
+			head.prev = new CDLL_Node<T>(data, head.prev, head);
+			head.prev.prev.next = head.prev;
+		}
 	}
 
 	// RETURN TRUE/FALSE THIS LIST CONTAINS A NODE WITH DATA EQUALS KEY
 	public boolean contains( T key )
 	{
-		return false;
+		return search( key ) != null; 
 	}
 
 	// RETURN REF TO THE FIRST NODE (SEARCH CLOCKWISE FOLLOWING next) THAT CONTAINS THIS KEY. DO -NOT- RETURN REF TO KEY ISIDE NODE
 	// RETURN NULL IF NOT FOUND
 	public CDLL_Node<T> search( T key )
 	{
+		CDLL_Node<T> temp = head;
+		if (temp.data.equals(key))
+		{
+			return temp;
+		}
+		temp = temp.next;
+		while (temp != head)
+		{
+			if (temp.data.equals(key))
+			{
+				return temp;
+			}
+			temp = temp.next;
+		}
 		return null;
 	}
 
 	// RETURNS CONATENATION OF CLOCKWISE TRAVERSAL
-	@SuppressWarnings("unchecked")
 	public String toString()
 	{
-
-		return "";
+		CDLL_Node<T> temp = head;
+		String str = "";
+		str += temp.data;
+		temp = temp.next;
+		while (temp != head)
+		{
+			str += "<=>" + temp.data;
+			temp = temp.next;
+		}
+		return str;
 	}
 
-} // END CDLL_LIST CLASS
+}
 
 // PRIVATE TO CODE OUTSIDE FILE. BUT PUBLIC TO CODE INSIDE
 class CDLL_Node<T>
@@ -99,4 +131,6 @@ class CDLL_Node<T>
   {	return ""+data;
   }
 } //END NODE CLASS
+
+//A starter file was given. I only wrote the code inside the "contains", "search", "toString", "insertAtFront", "insertAtTail", and "size" methods. The rest was given.
 
