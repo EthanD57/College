@@ -1,6 +1,6 @@
 public class LL_Recursive<T>
 {
-	private Node<T> head;  
+	private NodeR<T> head;  
 
 	public LL_Recursive()
 	{
@@ -9,7 +9,7 @@ public class LL_Recursive<T>
 
 	public void insertAtFront(T data)
 	{
-		head = new Node<T>(data,head);
+		head = new NodeR<T>(data,head);
 	}
 
  	public boolean contains( T key )
@@ -23,9 +23,9 @@ public class LL_Recursive<T>
 		if (head == null) insertAtFront(data);
 		else insertAtTailHelper(data, head);
 	}
-	public void insertAtTailHelper(T data, Node<T> curr)
+	public void insertAtTailHelper(T data, NodeR<T> curr)
 	{
-		if (curr.next == null) curr.next = new Node<T>(data);
+		if (curr.next == null) curr.next = new NodeR<T>(data);
 		else insertAtTailHelper(data, curr.next);
 	}
 
@@ -33,7 +33,7 @@ public class LL_Recursive<T>
 	{
 		return sizeHelper( head ); 
 	}
-	private int sizeHelper( Node<T> head )
+	private int sizeHelper( NodeR<T> head )
 	{
 		if (head==null) return 0;
 		return 1 + sizeHelper(head.next);
@@ -43,18 +43,18 @@ public class LL_Recursive<T>
 	{
 		return toStringHelper(head);
 	}
-	public String toStringHelper( Node<T> curr )
+	public String toStringHelper( NodeR<T> curr )
 	{
 		if (curr == null) return "";
 		if (curr.next == null) return curr.data + "";
 		return curr.data + " -> " + toStringHelper(curr.next);
 	}
 
-	public Node<T> search( T key )
+	public NodeR<T> search( T key )
 	{
 		return searchHelper(key, head);
 	}
-	public Node<T> searchHelper( T key, Node<T> curr )
+	public NodeR<T> searchHelper( T key, NodeR<T> curr )
 	{
 		if (curr == null) return null;
 		if (curr.data.equals(key)) return curr;
@@ -66,11 +66,11 @@ public class LL_Recursive<T>
 //"toStringHelper", and "insertAtTailHelper". The rest of the code was provided by the instructor.
 
 
-class Node<T>
+class NodeR<T>
 { T data;
-  Node<T> next;
-  Node() { this( null, null ); }
-  Node(T data){this( data, null ); }
-  Node(T data, Node<T> next) { this.data=data; this.next=next; }
+  NodeR<T> next;
+  NodeR() { this( null, null ); }
+  NodeR(T data){this( data, null ); }
+  NodeR(T data, NodeR<T> next) { this.data=data; this.next=next; }
   public String toString() { return ""+data; }
 }
