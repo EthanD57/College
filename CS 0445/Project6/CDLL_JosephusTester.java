@@ -12,7 +12,7 @@ public class CDLL_JosephusTester
 		String first2Bdeleted = args[1];
 		int skipCount = Integer.parseInt( args[2] );  // 5 or +3 or -4 etc. + sign optional
 		
-		
+		@SuppressWarnings("rawtypes")
 		CDLL_JosephusList<String> jCircle = new CDLL_JosephusList( infileName );
 		System.out.format( "jCircle pre ritual:  %s\n",jCircle );
 		jCircle.executeRitual( first2Bdeleted, skipCount );

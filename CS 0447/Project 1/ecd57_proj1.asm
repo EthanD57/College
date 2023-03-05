@@ -110,8 +110,8 @@ leave
 draw_all:
 enter
 	jal draw_tilemap
-	# jal obj_draw_all
-	# jal draw_hud
+	jal obj_draw_all
+	jal draw_hud
 leave
 
 #-------------------------------------------------------------------------------------------------
@@ -125,30 +125,72 @@ enter s0, s1
 		li s1, 0  #COLUMN
 		col_loop:
 		
-			move a1, s1
-			mul a1, a1, 5
-			sub a1, a1, 3
+			mul a0, s1, 5
+			sub a0, a0, 3
 
-			move a0, s0
-			mul a0, a0, 5
-			add a0, a0, 4
+			mul a1, s0, 5
+			add a1, a1, 4
 
-			la t1, tilemap
-			mul t2, s1, MAP_WIDTH
-			add t2, t2, s0
-			add t1, t1, t2
-			lb t0, tilemap(t1)
+			mul t0, s0, MAP_WIDTH
+			add t0, t0, s1
 
-			la t1, texture_atlas
-			mul t1, t0, 4
-			lw a2, texture_atlas(t1)
+			lb t0, tilemap(t0)
+
+			mul t0, t0, 4
+			lw a2, texture_atlas(t0)
 			
 			jal display_blit_5x5_trans
 			
-
+			inc s1
 			blt s1, MAP_WIDTH, col_loop
 		inc s0
 		blt s0, MAP_HEIGHT, row_loop
 
 
 leave s0, s1
+
+#-------------------------------------------------------------------------------------------------
+
+draw_hud:
+enter s0
+
+	li a0, 0
+	li a1, 4
+	lw a2, score
+	jal display_draw_int
+
+	heart_loop: 
+
+		mul a0, s0, 5
+		li a1, 59
+		la a2, tex_heart
+		jal display_blit_5x5_trans
+		inc s0
+	blt s0, 3, heart_loop
+
+leave s0
+
+#-------------------------------------------------------------------------------------------------
+
+obj_draw_all:
+enter s0
+
+	lw s0, cur_num_objs
+	dec s0
+	
+	Loop:
+		bgez s0, Exit 
+		
+		lb a0, object_x(s0)
+		lb a1, object_y(s0)
+		lw a2, object_type(s0) 
+		mul a2, a2, 4
+		lb a2, obj_textures(a2)
+
+		jal display_blit_5x5_trans
+
+		dec s0
+	j Loop            
+Exit:
+
+leave s0
