@@ -114,7 +114,7 @@ enter
 	jal draw_hud
 leave
 
-#-------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------- MY CODE STARTS HERE
 
 draw_tilemap:
 enter s0, s1
@@ -416,3 +416,6 @@ enter
 	sb zero, player_vel
 	sb zero, player_timer
 leave
+
+
+#I ONLY WROTE THE CODE BELOW THE INDICATED LINE. THE CODE ABOVE IT IS PROVIDED BY THE PROFESSOR
