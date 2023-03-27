@@ -1,3 +1,4 @@
+package XC1;
 public interface MyComparable
 {
 	// return 0 if this identical char for char to other

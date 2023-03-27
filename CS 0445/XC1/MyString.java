@@ -1,3 +1,4 @@
+package XC1;
 public class MyString implements MyComparable
 {
 	private char[] letters;
