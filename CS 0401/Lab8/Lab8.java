@@ -2,7 +2,7 @@ package Lab8;
 
 import java.util.*;
 
-public class Exercise2
+public class Lab8
 {
 	public static void main( String args[] )
 	{
