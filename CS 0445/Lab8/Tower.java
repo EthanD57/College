@@ -78,3 +78,5 @@ class Disk<T>
 	}
 
 } // END DISK CLASS
+
+//A starter file was given. I only wrote the "pop" and "push" methods. 

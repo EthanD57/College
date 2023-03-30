@@ -20,3 +20,5 @@ public class TowerTester
 		}
 	} // END MAIN
 } // END OF TOWERTESTER CLASS
+
+//This file is meant to be run with Tower.java. I did not write this file. It was provided by the professor.
