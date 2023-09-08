@@ -1,1 +1,1 @@
-All of the code and files in this folder were given by the instructor. Only the indicated sections in BoggleSolver.java were written by me.
+All of the code and files in this folder was given by the instructor. Only the indicated sections in BoggleSolver.java were written by me.
