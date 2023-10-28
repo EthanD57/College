@@ -1,0 +1,4 @@
+This folder contains all of the files to run a rudimentary version of an autocomplete. All of my code is within
+the AutoComplete.java file. All other files were provided by the proffessor. Usage: java A2Test "dictionary file".
+The only I wrote the functions: add, addHelper, advance, retreat, reset, isWord, add (there are two of them), getNumberOfPredictions, and retrievePrediction. 
+The rest of the code was provided by the proffessor.

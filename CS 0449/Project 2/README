@@ -1,0 +1,12 @@
+To build the driver, type "make" to the shell.
+
+To run the driver on all traces:
+
+    unix> ./mdriver
+
+To run the driver on a tiny test trace:
+
+	unix> ./mdriver -f short1-bal.rep
+
+This folder contains all of the files necessary to run a rudamentary malloc. The only file I wrote code in is the mm.c file. All other files
+were provided by the proffessor. I wrote the following funcitons: mm_malloc, mm_free, searchFreeList, coalesce, searchList, and freeListManager. All other functions were provided. 
