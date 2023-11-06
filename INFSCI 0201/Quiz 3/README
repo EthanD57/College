@@ -1,0 +1,2 @@
+This is a simple web server for quiz 3 of INFSCI 0201. If simply returns hello world on the local port 9500 or 
+a JSON string with some basic info about me on the local port 9500/whoareyou/(a random user input parameter).
