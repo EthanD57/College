@@ -1,0 +1,2 @@
+This folder contains the notebook for assingment 2 for INFSCI 0201. The only code I wrote were the __eq__, __hash__, to_json, serialize_to_json_file,
+and deserialize_from_json_file methods. The rest of the code was provided by the professor.
