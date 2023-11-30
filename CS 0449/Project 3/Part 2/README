@@ -1,0 +1,3 @@
+In this part of the problem. I was tasked with passing in a input string that takes advantage of the unsafe nature of the "gets" function in C. The first step was to make the program change its output to a different number, and the second task was to make the program execute the wrong function. 
+
+USAGE: ./target < exploit

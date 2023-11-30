@@ -1,0 +1,3 @@
+In this part of the project, I was tasked with looking at the assembly dump of a compiled C program that was provided by the professor. I had to figure out how to defuse the bomb based off the assembly dump. 
+
+Usage: "./bomb < bomb.txt"  or "./bomb" and then follow the prompts
