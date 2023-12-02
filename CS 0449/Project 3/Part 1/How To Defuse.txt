@@ -1,0 +1,23 @@
+PHASE 1: Look at line 14e7 in phase 1 function. It is comparing 0xfffffd31 to my input. 0xfffffd31 is 4294966577
+
+PHASE 2: Do "break strings_not_equal". Then do "continue". Finally do "x $rsi". Rsi is the register passed into strings_not_equal and is the key. 
+
+PHASE 3: On line 152a, it is comparing the first number to 2 and explodes if it isn't. In line 1530, it is comparing to 1 and explodes if it is not. 
+In lines 1559, 155c, and line 155f, it is checking that the i-1 and i-2 number is equal to i or the Fibonacci sequence.  
+
+PHASE 4: So first thing I did was "break phase_4". Then I did "continue". Then I did "break strings_not_equal". Do "continue" again 
+and then do "x $rsi". I did this because on line 15c4, it's clearly loading in something to compare my string to. 
+
+Then do: 
+
+Look at line 158d and 1590. It's looking to see that my string is at least 10 long. 
+
+Next look at lines 1592 and 1597. This loades 0 and 1 to edx and eax. 
+
+Next the function compares the two letters which should be the same at the starting index of "jokes" and 1st index of the input string.
+
+Next it adds 2 to my input string and 1 to the "jokes" string and compares again.
+
+Basically it checks that every other character in the input string is the same as the "jokes" string.
+
+So any string that is at least 10 long and every other character is the letters in "jokes" will work. 
