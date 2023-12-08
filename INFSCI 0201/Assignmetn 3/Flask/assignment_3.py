@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template, request
 from model.smart_devices import Home, SmartDevice, LightBulb
 
@@ -20,6 +21,9 @@ def post_bulb():
     attributes = request.get_json()
     Lightbulb2 = LightBulb(attributes['name'], attributes['manufacturer'], attributes['brightness'])
     home.add_device(Lightbulb2)
+    outfile = open("DUMP.json", 'w')
+    json.dump(Lightbulb2.__dict__, outfile)              
+    outfile.close()
     return ("IT'S ADDED")
     
 if __name__ == "__main__":
