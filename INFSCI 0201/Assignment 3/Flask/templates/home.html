@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>{{ home._address }}</h1>
+    <h2>Smart Devices</h2>
+    {% for device in home._smart_devices %}
+    <div>
+        <h3>{{ device._name }}</h3>
+        <p>Manufacturer: {{ device._manufacturer }}</p>
+        <p>Brightness: {{ device._brightness }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
