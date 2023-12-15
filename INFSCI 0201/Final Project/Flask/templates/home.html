@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>{{ home._address }}</h1>
+    <h2>Smart Devices</h2>
+    {% for device in home._smart_devices %}
+    <div>
+        <h3>{{ device._name }}</h3>
+        <p>Manufacturer: {{ device._manufacturer }}</p>
+        {% if device._brightness %}
+            <p>Brightness: {{ device._brightness }}</p>
+        {% endif %}
+        {% if device._temperature %}
+            <p>Temperature: {{ device._temperature }}</p>
+        {% endif %}
+        {% if device._lock %}
+            <p>Locked Status: {{ device._lock }}</p>
+        {% endif %}
+        {% if device._battery %}
+            <p>Battery Level: {{ device._battery }}</p>
+        {% endif %}        
+        {% if device._state %}
+            <p>Power State: {{ device._state }}</p>
+        {% endif %}     
+        {% if device._cleaning %}
+            <p>Cleaning: {{ device._cleaning }}</p>
+        {% endif %}                    
+    </div>
+    {% else %}
+    <p>There are no smart devices in your home!</p>
+    {% endfor %}
+</body>
+</html>
