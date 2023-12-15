@@ -12,7 +12,10 @@ def index():
     if home._smart_devices:
         return render_template("home.html", home=home)
     else:
-        load_home()
+        try:
+            load_home()
+        except:
+            pass
     return render_template("home.html", home=home)
 
 
@@ -57,6 +60,11 @@ def save_home():
         json.dump(devices_dict, f)
     return "Home saved", 200
 
+@app.route('/delete/<name>', methods=['DELETE'])
+def delete(name):
+    home._smart_devices = [device for device in home._smart_devices if device._name != name]
+    return render_template("home.html", home=home)
+
 @app.route('/load', methods=['GET'])
 def load_home():
     global home
@@ -73,6 +81,9 @@ def load_home():
             device = SmartPlug(**device_dict)
         elif "locked" in device_dict:
             device = SmartLock(**device_dict)
+        else:
+            print("Invalid device! Check driver code for valid devices.")
+            return render_template("home.html", home=home)
         home.add_device(device)
     return "Home loaded", 200
     
