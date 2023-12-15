@@ -1,6 +1,7 @@
 import json
 from flask import Flask, render_template, request
 from model.smartDevices import Thermostat, LightBulb, SmartVacuum, SmartPlug, SmartLock, Home, SmartDevice
+import requests
 
 
 app = Flask(__name__)
@@ -86,6 +87,19 @@ def load_home():
             return render_template("home.html", home=home)
         home.add_device(device)
     return "Home loaded", 200
+
+@app.route('/temperatureDifference/<zip>', methods=['GET'])
+def tempDiff(zip):
+    url = "http://api.weatherstack.com/current"
+    access_key = "ea31b1e93ebfb5007496a6974d55e072" # Note: This is NOT a secure way of doing this
+    query = str(zip)
+    units = "f"
+    response = requests.get(url, params={"access_key": access_key, "query": query, "units": units})
+    response = response.json()
+    current_temp = response["current"]["temperature"]
+    temp_diff = current_temp - home._smart_devices[0]._temperature
+    return str(temp_diff), 200
+
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
