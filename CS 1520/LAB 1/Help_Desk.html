@@ -6,7 +6,49 @@
     <title>Help Desk</title>
 </head>
 <body>
-    <h1>Help Desk</h1>
-    <p>This is the help desk page.</p>
+    <h1>Pitt - Help Desk</h1>
+
+    <div>
+        <h3>What way do you want us to contact you?</h3>
+        <form action="Index.html" method="get">
+            <input type="radio" id="phone" name="contactPreference" value="phone">
+            <label for="phone">By Phone</label><br>
+            <input type="radio" id="email" name="contactPreference" value="email">
+            <label for="email">Email</label><br>
+            <input type="radio" id="liveChat" name="contactPreference" value="chat">
+            <label for="liveChat">Live Chat</label><br>
+        <!---------------------------------------------------------->
+        <h3>Current Issue</h3>
+            <input type="radio" id="mainframeDown" name="currentIssue" value="mainframeDown">
+            <label for="mainframeDown">Mainframe Down</label><br>
+            <input type="radio" id="resetPassword" name="currentIssue" value="resetPassword">
+            <label for="resetPassword">Reset Password</label><br>
+            <input type="radio" id="newAccount" name="currentIssue" value="newAccount">
+            <label for="newAccount">Create New Account</label><br>
+        <!---------------------------------------------------------->
+        <h3>Best Time(s) to Reach You</h3>
+            <input type="checkbox" id="morning" name="bestTimes" value="morning">
+            <label for="morning">Morning</label><br>
+            <input type="checkbox" id="afternoon" name="bestTimes" value="afternoon">
+            <label for="afternoon">Afternoon</label><br>
+            <input type="checkbox" id="evening" name="bestTimes" value="evening">
+            <label for="evening">Evening</label><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        
+
+    </div>
+
+    <div>
+        <h2>Useful Links</h2>
+        <ul>
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="Contact.html">Contact Us</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Help_Desk.html">Help Desk</a></li>
+    </div>
+    
 </body>
 </html>
