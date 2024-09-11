@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/ecd57/EthanD57.github.io/CS 1550/Project 1 - Graphics Library",
+            "binaryPath": "/home/ecd57/EthanD57.github.io/CS 1550/Project 1 - Graphics Library/graphics_driver",
+            "binaryArgs": []
+        }
+    ]
+}
