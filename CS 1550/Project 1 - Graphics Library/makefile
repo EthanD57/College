@@ -9,7 +9,7 @@ TARGET = graphics_driver
 
 # Source files
 SRC1 = graphics_driver.c
-SRC2 = gLibrary.c
+SRC2 = library.c
 
 # Object files
 OBJ1 = $(SRC1:.c=.o)
