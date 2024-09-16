@@ -8,11 +8,9 @@
 
 #define SYS_OPEN 5
 #define SYS_CLOSE 6
-#define SYS_WRITE 4
-#define SYS_READ 3
 #define SYS_EXIT 1
 #define SYS_MMAP 9
-
+#define SYS_MUNMAP 11
 
 // Globals
 int frameBuffer;
@@ -35,7 +33,7 @@ void init_graphics(){
 
     bufferSize = vinfo.yres_virtual * finfo.line_length;
  
-    mappedBuffer = (void*) syscall(SYS_MMAP, NULL, bufferSize, PROT_READ | PROT_WRITE, MAP_SHARED, frameBuffer, 0);
+    mappedBuffer = (void*) mmap(NULL, bufferSize, PROT_READ | PROT_WRITE, MAP_SHARED, frameBuffer, 0);
     if (mappedBuffer == NULL){
         syscall(SYS_EXIT, 1);
     }
@@ -56,7 +54,7 @@ void exit_graphics(){
 	term.c_lflag |= ECHO;      //set echo
 	ioctl(0, TCSETS, &term);
 
-	syscall(SYS_MMAP, mappedBuffer, 0, 0, 0, 0, 0);
-	syscall(SYS_CLOSE, frameBuffer);
+	syscall(SYS_MUNMAP, mappedBuffer, bufferSize);
 }
+
 
