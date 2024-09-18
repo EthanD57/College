@@ -198,7 +198,7 @@ void draw_circle(int x_center, int y_center, int radius, color_t color){
 	//Idea for fix from Medium.com, but they did not provvide the full solution
 }
 
-int abs(int x){
+int my_abs(float x){
 	if(x<0){
 		return -x;
 	}
@@ -211,8 +211,8 @@ void draw_line(int x1, int y1, int x2, int y2, color_t color) {
 	xSlope=(x2-x1);
 	ySlope=(y2-y1);
 	if(ySlope<=xSlope&&ySlope>0){
-		xSlope=abs(xSlope);
-		ySlope=abs(ySlope);
+		xSlope=my_abs(xSlope);
+		ySlope=my_abs(ySlope);
 		P=(2*ySlope)-xSlope;
 		draw_pixel(x1,y1,color);
 		int xk=x1;
@@ -229,8 +229,8 @@ void draw_line(int x1, int y1, int x2, int y2, color_t color) {
 		}
 	}
 	else if(ySlope>xSlope&&ySlope>0){
-		xSlope=abs(xSlope);
-		ySlope=abs(ySlope);
+		xSlope=my_abs(xSlope);
+		ySlope=my_abs(ySlope);
 		P=(2*xSlope)-ySlope;
 		draw_pixel(x1,y1,color);
 		int xk=x1; int yk=y1;
@@ -246,8 +246,8 @@ void draw_line(int x1, int y1, int x2, int y2, color_t color) {
 		}			
 	}
 	else if(ySlope>=-xSlope){
-		xSlope=abs(xSlope);
-		ySlope=abs(ySlope);
+		xSlope=my_abs(xSlope);
+		ySlope=my_abs(ySlope);
 		P=(2*ySlope)-xSlope;
 		draw_pixel(x1,y1,color);
 		int xk=x1;
@@ -264,8 +264,8 @@ void draw_line(int x1, int y1, int x2, int y2, color_t color) {
 		}
 	}
 	else if(ySlope<-xSlope){
-		xSlope=abs(xSlope);
-		ySlope=abs(ySlope);
+		xSlope=my_abs(xSlope);
+		ySlope=my_abs(ySlope);
 		P=(2*ySlope)-xSlope;
 		draw_pixel(x1,y1,color);
 		int xk=x1;
