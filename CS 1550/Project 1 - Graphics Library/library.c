@@ -77,8 +77,8 @@ char getkey(){
 void sleep_ms(long ms){
 	struct timespec reqSleep;	 //Initializes the timespec struct from time.h
 
-	reqSleep.tv_sec = 0;				//We aren't interested in seconds, so it is set to 0 and we convernt the ms to ns
-	reqSleep.tv_nsec = ms * 1000000;
+	reqSleep.tv_sec = ms/1000;				//We aren't interested in seconds, so it is set to 0 and we convernt the ms to ns
+	reqSleep.tv_nsec = (ms%1000) * 1000000;
 
 	nanosleep(&reqSleep, NULL);		//Sleep for the specified time and don't handle errors
 }
@@ -139,4 +139,147 @@ void draw_text(int x, int y, const char *text, color_t c) {
             }
         }
     }
+}
+
+void draw_circle(int x_center, int y_center, int radius, color_t color){
+	int x = 0, y = radius;
+     
+    draw_pixel(x + x_center, y + y_center, color);
+     
+    // When radius is zero only a single
+    // point will be printed
+    if (radius > 0)
+    {
+        draw_pixel(x + x_center, -y + y_center, color);
+        draw_pixel(y + x_center, x + y_center, color);
+        draw_pixel(-y + x_center, x + y_center, color);
+    }
+     
+    // Initialising the value of P
+    int P = 1 - radius;
+    while (y > x)
+    { 
+        x++;
+         
+        // Mid-point is inside or on the perimeter
+        if (P <= 0)
+            P = P + 2*x + 1;
+             
+        // Mid-point is outside the perimeter
+        else
+        {
+            x--;
+            P = P + 2*x - 2*y + 1;
+        }
+         
+        // All the perimeter points have already been printed
+        if (y < x)
+            break;
+        
+        // Printing the generated point and its reflection
+        // in the other octants after translation
+        draw_pixel(x + x_center, y + y_center, color);
+        draw_pixel(-x + x_center, y + y_center, color);
+        draw_pixel(x + x_center, -y + y_center, color);
+        draw_pixel(-x + x_center, -y + y_center, color);
+         
+        // If the generated point is on the line x = y then 
+        // the perimeter points have already been printed
+        if (x != y)
+        {
+            draw_pixel(y + x_center, x + y_center, color);
+            draw_pixel(-y + x_center, x + y_center, color);
+            draw_pixel(y + x_center, -x + y_center, color);
+            draw_pixel(-y + x_center, -x + y_center, color);
+        }
+    } 
+	//Algorithm from https://www.geeksforgeeks.org/mid-point-circle-drawing-algorithm/ 
+	//It did not work as expected, so it was modified to draw the circle correctly
+	//Idea for fix from Medium.com, but they did not provvide the full solution
+}
+
+int abs(int x){
+	if(x<0){
+		return -x;
+	}
+	return x;
+}
+
+void draw_line(int x1, int y1, int x2, int y2, color_t color) { 
+	int xSlope,ySlope,P;
+	int k=0;
+	xSlope=(x2-x1);
+	ySlope=(y2-y1);
+	if(ySlope<=xSlope&&ySlope>0){
+		xSlope=abs(xSlope);
+		ySlope=abs(ySlope);
+		P=(2*ySlope)-xSlope;
+		draw_pixel(x1,y1,color);
+		int xk=x1;
+		int yk=y1;
+		for(k=x1;k<x2;k++){ 
+			if(P<0){	
+				draw_pixel(++xk,yk,color);
+				P=P+(2*ySlope);
+			}
+			else{
+				draw_pixel(++xk,++yk,color);
+				P=P+(2*ySlope)-(2*xSlope);
+			}
+		}
+	}
+	else if(ySlope>xSlope&&ySlope>0){
+		xSlope=abs(xSlope);
+		ySlope=abs(ySlope);
+		P=(2*xSlope)-ySlope;
+		draw_pixel(x1,y1,color);
+		int xk=x1; int yk=y1;
+		for(k=y1;k<y2;k++){ 
+			if(P<0){	
+				draw_pixel(xk,++yk,color);
+				P=P+(2*xSlope);
+			}
+			else{
+				draw_pixel(++xk,++yk,color);
+				P=P+(2*xSlope)-(2*ySlope);
+			}
+		}			
+	}
+	else if(ySlope>=-xSlope){
+		xSlope=abs(xSlope);
+		ySlope=abs(ySlope);
+		P=(2*ySlope)-xSlope;
+		draw_pixel(x1,y1,color);
+		int xk=x1;
+		int yk=y1;
+		for(k=x1;k<x2;k++){ 
+			if(P<0){	
+				draw_pixel(++xk,yk,color);
+				P=P+(2*ySlope);
+			}
+			else{
+				draw_pixel(++xk,--yk,color);
+				P=P+(2*ySlope)-(2*xSlope);
+			}
+		}
+	}
+	else if(ySlope<-xSlope){
+		xSlope=abs(xSlope);
+		ySlope=abs(ySlope);
+		P=(2*ySlope)-xSlope;
+		draw_pixel(x1,y1,color);
+		int xk=x1;
+		int yk=y1;
+		for(k=y1;k>y2;k--){ 
+			if(P<0){	
+				draw_pixel(xk,--yk,color);
+				P=P+(2*xSlope);
+			}
+			else{
+				draw_pixel(++xk,--yk,color);
+				P=P+(2*xSlope)-(2*ySlope);
+			}
+		}
+	}	
+	//Algorithm from https://github.com/ashiagarwal73/Bresenham-s-line-algorithm-for-all-quadrants/blob/master/Bresenhams.c
 }
