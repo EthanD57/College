@@ -9,17 +9,17 @@ int main() {
     color_t color3 = rgbConverter(31, 31, 00);
 
     draw_circle(100, 100, 50, color1);
-
-    draw_text(200, 200, "CLEARING SCREEN", color2);
-    sleep_ms(5000000);
+    draw_text(200, 200, "This is a circle", color1);
+    draw_text(200, 300, "CLEARING SCREEN", color2);
+    sleep_ms(5000);
     clear_screen();
 
     draw_text(200, 200, "SLEEPING FOR TEN SECONDS", color2);
-    sleep_ms(10000000);
+    sleep_ms(10000);
     clear_screen();
 
     draw_text(200, 200, "DRAWING LINES AND STUFF", color3);
-    sleep_ms(5000000);
+    sleep_ms(5000);
     clear_screen();
 
     draw_line(0, 0, 639, 479, color2);
@@ -35,8 +35,9 @@ int main() {
             str[0] = key;
             str[1] = '\0';
             draw_text(200, 200, "KEY PRESSED", color2);
+            draw_text(200, 100, "Exiting now", color2);
             draw_text(200, 250, str, color1);
-            sleep_ms(10000000);
+            sleep_ms(3000);
             clear_screen();
             break;
         }
