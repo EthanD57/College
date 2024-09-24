@@ -11,7 +11,7 @@ body {
 }
 
 #TopNavBar {
-    display: flex;
+    display: absolute;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
@@ -127,7 +127,7 @@ body {
 
 #sideNavBar {
     position: absolute;
-    top: 30px;
+    top: 40px;
     left: 0;
     width: 240px;
     list-style-type: none;
@@ -203,4 +203,28 @@ body {
 
 #Main a:visited {
     color: white;
+}
+
+@media only screen and (max-width: 450px) {
+    #rightSide {
+        display: none;
+    }
+
+    #topNavBar2 ul {
+        display: none;
+    }
+
+    #sideNavBar {
+        width: 100%;
+    }
+    
+    #Main {
+        display: absolute;
+        margin-top: 300px;
+        }
+
+    #Main ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
 }
