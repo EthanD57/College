@@ -76,23 +76,30 @@
 
 #include "uid16.h"
 
+//Implementation of the Messaging System Syscalls
 #include <linux/list.h>
 #include <linux/slab.h>
+#include <linux/uaccess.h>
+#include <linux/string.h>
 
-struct message {
-    char from[MAX_USERNAME_LEN];
-    char content[MAX_MSG_LEN];
-    struct list_head list;  // for the list of messages
-};
-
-struct user {
-    char username[MAX_USERNAME_LEN];
-    struct list_head messages;  // list of messages for this user
-    struct list_head list;  // for the list of users
-};
+static LIST_HEAD(users);
 
 #define MAX_USERNAME_LEN 256
 #define MAX_MSG_LEN 1024
+struct message {
+    char from[MAX_USERNAME_LEN];
+    char content[MAX_MSG_LEN];
+    struct list_head messageList;  // for the list of messages
+};
+
+struct User {
+    char username[MAX_USERNAME_LEN];
+    struct list_head messages;  // list of messages for this user
+    struct list_head userList;  // for the list of users
+};
+//----------------------------------------------------
+
+
 
 #ifndef SET_UNALIGN_CTL
 # define SET_UNALIGN_CTL(a, b)	(-EINVAL)
@@ -228,15 +235,82 @@ out:
 
 //Sends a message from one user to another
 SYSCALL_DEFINE3(cs1550_send_msg, const char __user *, to, const char __user *, msg, const char __user *, from){
+	struct User *targetUser;
+	struct message *newMessage;
+    char *to_kernel = kmalloc(MAX_USERNAME_LEN, GFP_KERNEL);
+    char *msg_kernel = kmalloc(MAX_MSG_LEN, GFP_KERNEL);
+    char *from_kernel = kmalloc(MAX_USERNAME_LEN, GFP_KERNEL);
+	
+	copy_from_user(to_kernel, to, MAX_USERNAME_LEN);
+	copy_from_user(msg_kernel, msg, MAX_MSG_LEN);
+	copy_from_user(from_kernel, from, MAX_USERNAME_LEN);
+
+	list_for_each_entry(targetUser, &users, userList) {
+		if (strcmp(targetUser->username, to_kernel) == 0) {
+			newMessage = kmalloc(sizeof(struct message), GFP_KERNEL);
+			strscpy(newMessage->from, from_kernel, MAX_USERNAME_LEN);
+			strscpy(newMessage->content, msg_kernel, MAX_MSG_LEN);
+			list_add_tail(&newMessage->messageList, &targetUser->messages);
+			kfree(to_kernel);
+    		kfree(msg_kernel);
+    		kfree(from_kernel);
+			return 0;
+		}
+	}
+	targetUser = kmalloc(sizeof(struct User), GFP_KERNEL);
+	strscpy(targetUser->username, to_kernel, MAX_USERNAME_LEN);
+	INIT_LIST_HEAD(&targetUser->messages);
+	list_add_tail(&targetUser->userList, &users);
+
+	newMessage = kmalloc(sizeof(struct message), GFP_KERNEL);
+	strscpy(newMessage->from, from_kernel, MAX_USERNAME_LEN);
+	strscpy(newMessage->content, msg_kernel, MAX_MSG_LEN);
+	list_add_tail(&newMessage->messageList, &targetUser->messages);
+
+	kfree(to_kernel);
+    kfree(msg_kernel);
+    kfree(from_kernel);
 	return 0;
+
 }
+
 
 //Gets a message from one user to another
 SYSCALL_DEFINE3(cs1550_get_msg, const char __user *, to, char __user *, msg, char __user *, from)
 {
-    return 0;
-}
+    struct User *targetUser;
+	struct message *currMessage;
+	char *receiver = kmalloc(MAX_USERNAME_LEN, GFP_KERNEL);
 
+	copy_from_user(receiver, to, MAX_USERNAME_LEN);
+	
+
+	list_for_each_entry(targetUser, &users, userList) {
+		if (strcmp(targetUser->username, receiver) == 0) {
+
+			if (list_empty(&targetUser->messages)) {
+				return -1;
+			}
+			currMessage = list_first_entry(&targetUser->messages, struct message, messageList);
+			copy_to_user(msg, currMessage->content, MAX_MSG_LEN);
+			copy_to_user(from, currMessage->from, MAX_USERNAME_LEN);
+		
+			list_del(&currMessage->messageList);
+			kfree(currMessage);
+
+			//check if the list is empty
+			
+			if (list_empty(&targetUser->messages)) {
+				return 0; 
+			}
+			else {
+				return 1;
+			}
+		}
+	}
+	return -1;
+
+}
 
 
 SYSCALL_DEFINE3(setpriority, int, which, int, who, int, niceval)
