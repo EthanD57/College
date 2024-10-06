@@ -82,8 +82,6 @@
 #include <linux/uaccess.h>
 #include <linux/string.h>
 
-static LIST_HEAD(users);
-
 #define MAX_USERNAME_LEN 256
 #define MAX_MSG_LEN 1024
 struct message {
@@ -97,6 +95,8 @@ struct User {
     struct list_head messages;  // list of messages for this user
     struct list_head userList;  // for the list of users
 };
+
+static LIST_HEAD(users);
 //----------------------------------------------------
 
 

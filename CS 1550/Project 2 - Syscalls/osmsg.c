@@ -6,6 +6,7 @@
 
 int send_msg(char *to, char *msg, char *from) {
     syscall(451, to, msg, from);
+    return 0;
 }
 
 int get_msg(char *to, char *msg, char *from) {
@@ -23,6 +24,7 @@ int get_msg(char *to, char *msg, char *from) {
         returnValue = syscall(452, to, msg, from);
         printf("%s said: \"%s\"\n", from, msg);
     }
+    return 0;
 }
 
 int main(int argc, char *argv[]){  
