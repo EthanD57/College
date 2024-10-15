@@ -1,0 +1,54 @@
+#title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px; 
+}
+
+#leftSide {
+    float: left;
+    width: 30%; 
+}
+#rightSide {
+    float: right;
+    width: 70%;
+    text-align: center; 
+    display: block;
+    margin: 0 auto;
+}
+#carPicture img {
+    max-width: 30%;
+    height: auto;
+}
+
+#carDescription {
+    margin-top: 20px; 
+}
+#insurancePlan label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+#carDD, #carColorDD {
+    margin-bottom: 40px; 
+}
+
+@media screen and (max-width: 600px) {
+    #leftSide, #rightSide {
+        float: none; 
+        width: 100%; 
+    }
+
+    #carPicture img {
+        margin-top: 10px;
+        max-width: 70%;
+    }
+
+    #carDescription {
+        margin-top: 10px;
+    }
+
+    #carDD, #carColorDD {
+        margin-bottom: 20px; /* Reduce space between dropdowns */
+    }
+    
+}

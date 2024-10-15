@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Car Dealer App</title>
+        <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    </head>
+    <body>
+        <div id = "title"><h1>Car Dealer App</h1></div>
+        <br>
+        <hr>
+        <div id = "leftSide">
+            <div id = "carDD">
+                <p>Car Type</p>
+                <select id = "carSelect">
+                    <option value = "1">Ferrari</option>
+                    <option value = "2">Lamborghini</option>
+                    <option value = "3">Mustang</option>
+                </select>
+            </div>
+            <div id = "carColorDD">
+                <p>Car Color</p>
+                <select id = "carColorSelect">
+                    <option value = "1">Red</option>
+                    <option value = "2">White</option>
+                    <option value = "3">Yellow</option>
+                </select>
+            </div>
+            <div id = "insurancePlan">
+                <p>Insurance Plan</p>
+                <label>
+                    <input type="radio" name="insurance" value="1"> No Insurance
+                </label>
+                <label>
+                    <input type="radio" name="insurance" value="2" checked> 3-year insurance
+                </label>
+            </div>
+        </div>
+        <div id = "rightSide">
+            <div id = "carPicture">
+                <img src="banana.jpg" alt="Banana"></body>
+            </div>
+            <div id="carDescription">
+                <p>Description</p>
+                <textarea id="carDescriptionText" rows="4" cols="50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis neque, perspiciatis consequatur, ut animi ducimus ipsum consectetur in, aperiam officiis temporibus rem vero atque non aut fugiat laudantium tenetur illo.</textarea>
+            </div>
+        </div>
+    </body>
+</html>
