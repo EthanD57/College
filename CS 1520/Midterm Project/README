@@ -1,0 +1,4 @@
+This is a simple car dealer website that I made for my web development class.
+Users can select from 3 different car makes, and then select 3 colors per make. 
+The website is built using HTML, CSS, and JavaScript and updates as the user makes selections.
+No images are included with this for copyright reasons, but you can easily add your own images by making an "Images" folder and adjusting the relative file paths in the HTML/JS files. 
