@@ -125,10 +125,7 @@ void response(int connfd)
             localCopy->content = strdup(cached->content);
         }
     }
-    pthread_mutex_unlock(&cache_lock);
-
     if (cached == NULL){ // File not found in cache
-        pthread_mutex_lock(&cache_lock); // ENTER CRITICAL SECTION
         cached = ammendCache(filename); // Add file to cache
         if (cached != NULL){ 
             localCopy = malloc(sizeof(CachedFile));
