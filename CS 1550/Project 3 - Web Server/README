@@ -6,4 +6,4 @@ This project showcases the speed differences between implementations of web serv
 3. Run the server with sudo ./objectNAME
 4. Run the python script with 5 text files in the local directory
 
-Some of the code was provided by the proffessor. All of the code dealing with parallelism was written by me. All of the code dealing with the web server and GET requests was written by the proffessor. 
+All of the code dealing with parallelism was written by me. All of the code dealing with the web server and GET requests was written by John Misurda. 
