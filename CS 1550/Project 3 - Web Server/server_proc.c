@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -16,6 +17,7 @@ sem_t sem;
 
 int main()
 {
+    sem_init(&sem, 0, 1); // Initialize the semaphore
 	//Sockets represent potential connections
 	//We make an internet socket
 	int sfd = socket(PF_INET, SOCK_STREAM, 0);
@@ -48,6 +50,7 @@ int main()
 		perror("Listen failed");
 		exit(EXIT_FAILURE);
 	}
+    FILE *stats_file = fopen("stats_proc.txt", "w"); 
 
 	//A server's gotta serve...
 	for(;;){
@@ -72,11 +75,11 @@ int main()
             exit(EXIT_FAILURE);
         }
         else if(pid == 0){ // Child process ----------------
-            time_t startTime, endTime;  // For timing the request
             struct stat file_stats;
-            FILE *stats_file; 
+            struct timespec start, end;
             double timeDiff;
-            time(&startTime);  // Start timing the request
+            clock_gettime(CLOCK_REALTIME, &start);  // Start timing the request
+
 
             char buffer[1024];
             char filename[1024];
@@ -101,14 +104,13 @@ int main()
 
                 sem_wait(&sem); //ENTER CRITICAL SECTION
 
-                stats_file = fopen("stats_proc.txt", "a"); 
-                time(&endTime);  // End timing the request
-                timeDiff = difftime(endTime, startTime);
-                fprintf(stats_file, "%s 0 %.3f", filename, timeDiff); //Write filename, 
-                fclose(stats_file);
+                clock_gettime(CLOCK_REALTIME, &end);
+                timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff); //Write filename, 
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
-                
+
+                fclose(stats_file);
                 exit(EXIT_FAILURE);
             }
 
@@ -116,8 +118,7 @@ int main()
             if(amt == sizeof(buffer)){
                 while(recv(connfd, buffer, sizeof(buffer), 0) == sizeof(buffer))
                     /* discard */;
-            }
-
+            }   
             f = fopen(filename, "rb");
             if(f == NULL){
                 strcpy(buffer, "HTTP/1.1 404 Not Found\n\n");
@@ -127,13 +128,13 @@ int main()
 
                 sem_wait(&sem); //ENTER CRITICAL SECTION
 
-                stats_file = fopen("stats_proc.txt", "a");  // Open the stats file and write the time taken
-                time(&endTime);  // End timing the request
-                timeDiff = difftime(endTime, startTime);
-                fprintf(stats_file, "%s 0 %.3f", filename, timeDiff);
-                fclose(stats_file);
+                clock_gettime(CLOCK_REALTIME, &end);
+                timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff);
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
+
+                fclose(stats_file);
                 exit(EXIT_FAILURE);
             }
             else{
@@ -194,13 +195,12 @@ int main()
                 
                 sem_wait(&sem); //ENTER CRITICAL SECTION
 
-                stats_file = fopen("stats_proc.txt", "a");  // Open the stats file and write the time taken
-                time(&endTime);  // End timing the request
-                timeDiff = difftime(endTime, startTime);
-                fprintf(stats_file, "%s %ld %.3f", filename, size, timeDiff);
-                fclose(stats_file);
+                clock_gettime(CLOCK_REALTIME, &end);
+                timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                fprintf(stats_file, "%s %d %.4f\n", filename, size, timeDiff);
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
+                fclose(stats_file);
             }
             shutdown(connfd, SHUT_RDWR);
             close(connfd);
@@ -210,11 +210,12 @@ int main()
         else{
             // Parent process ----------------
             close(connfd);
-            waitpid(pid, NULL, WNOHANG); // Wait for the child process to finish
+            waitpid(pid, NULL, WNOHANG);
+            shutdown(connfd, SHUT_RDWR);
         }
-		
 
 	}
+    fclose(stats_file);
 	close(sfd);
 	return 0;
 }

@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -13,14 +14,15 @@
 #include <pthread.h>
 
 pthread_mutex_t lock;
+FILE *stats_file; 
+
 
 void response(int connfd)
 {
-    time_t startTime, endTime; // For timing the request
+    struct timespec start, end;
     struct stat file_stats;
-    FILE *stats_file;
     double timeDiff;
-    time(&startTime); // Start timing the request
+    clock_gettime(CLOCK_REALTIME, &start);  // Start timing the request
 
     char buffer[1024];
     char filename[1024];
@@ -44,15 +46,14 @@ void response(int connfd)
 
         pthread_mutex_lock(&lock); // ENTER CRITICAL SECTION
 
-        stats_file = fopen("stats_thread.txt", "a");
-        time(&endTime); // End timing the request
-        timeDiff = difftime(endTime, startTime);
-        fprintf(stats_file, "%s 0 %.3f", filename, timeDiff); // Write filename,
-        fclose(stats_file);
+        clock_gettime(CLOCK_REALTIME, &end);  // Start timing the request
+        timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+        fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff);
+        fflush(stats_file);
 
         pthread_mutex_unlock(&lock); // EXIT CRITICAL SECTION
 
-        pthread_exit(1);
+        pthread_exit(NULL);
     }
 
     if (amt == sizeof(buffer))
@@ -71,15 +72,14 @@ void response(int connfd)
 
         pthread_mutex_lock(&lock); // ENTER CRITICAL SECTION
 
-        stats_file = fopen("stats_thread.txt", "a"); // Open the stats file and write the time taken
-        time(&endTime);                            // End timing the request
-        timeDiff = difftime(endTime, startTime);
-        fprintf(stats_file, "%s 0 %.3f", filename, timeDiff);
-        fclose(stats_file);
+        clock_gettime(CLOCK_REALTIME, &end);  // Start timing the request
+        timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+        fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff);
+        fflush(stats_file);
 
         pthread_mutex_unlock(&lock); // EXIT CRITICAL SECTION
         
-        pthread_exit(1);
+        pthread_exit(NULL);
     }
     else
     {
@@ -143,22 +143,23 @@ void response(int connfd)
 
         pthread_mutex_lock(&lock); // ENTER CRITICAL SECTION
 
-        stats_file = fopen("stats_thread.txt", "a"); // Open the stats file and write the time taken
-        time(&endTime);                            // End timing the request
-        timeDiff = difftime(endTime, startTime);
-        fprintf(stats_file, "%s %ld %.3f", filename, size, timeDiff);
-        fclose(stats_file);
+        clock_gettime(CLOCK_REALTIME, &end);  // Start timing the request
+        timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+        fprintf(stats_file, "%s %ld %.4f\n", filename, size, timeDiff);
+        fflush(stats_file);
 
         pthread_mutex_unlock(&lock); // ENTER CRITICAL SECTION
     }
     shutdown(connfd, SHUT_RDWR);
     close(connfd);
 
-    pthread_exit(0);
+    pthread_exit(NULL);
 }
 
 int main()
 {
+    pthread_mutex_init(&lock, NULL);
+    stats_file = fopen("stats_thread.txt", "w");
     // Sockets represent potential connections
     // We make an internet socket
     int sfd = socket(PF_INET, SOCK_STREAM, 0);
@@ -211,10 +212,10 @@ int main()
         // THREAD TIME
 
         pthread_t thread;
-        pthread_create(&thread, NULL, response, connfd);
+        pthread_create(&thread, NULL, response, (void *) connfd);
         pthread_detach(thread);
-        close(connfd);
     }
+    fclose(stats_file);
     close(sfd);
     return 0;
 }
