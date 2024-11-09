@@ -30,7 +30,7 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 FILE *stats_file; 
 int cache_index = 0;
 
-CachedFile* ammendCache(char *filename){
+CachedFile* amendCache(char *filename){
 
     FILE *recentFile = fopen(filename, "rb");
     if (recentFile == NULL){
@@ -126,7 +126,7 @@ void response(int connfd)
         }
     }
     if (cached == NULL){ // File not found in cache
-        cached = ammendCache(filename); // Add file to cache
+        cached = amendCache(filename); // Add file to cache
         if (cached != NULL){ 
             localCopy = malloc(sizeof(CachedFile));
             *localCopy = *cached;
