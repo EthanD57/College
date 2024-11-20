@@ -102,10 +102,12 @@ int main()
                 shutdown(connfd, SHUT_RDWR);
                 close(connfd);
 
-                sem_wait(&sem); //ENTER CRITICAL SECTION
 
                 clock_gettime(CLOCK_REALTIME, &end);
+                
                 timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                sem_post(&sem); //EXIT CRITICAL SECTION
+                
                 fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff); //Write filename, 
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
@@ -126,10 +128,11 @@ int main()
                 shutdown(connfd, SHUT_RDWR);
                 close(connfd);
 
-                sem_wait(&sem); //ENTER CRITICAL SECTION
 
                 clock_gettime(CLOCK_REALTIME, &end);
                 timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                sem_wait(&sem); //ENTER CRITICAL SECTION
+
                 fprintf(stats_file, "%s 0 %.4f\n", filename, timeDiff);
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
@@ -193,10 +196,11 @@ int main()
 
                 fclose(f);
                 
-                sem_wait(&sem); //ENTER CRITICAL SECTION
 
                 clock_gettime(CLOCK_REALTIME, &end);
                 timeDiff = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+                sem_wait(&sem); //ENTER CRITICAL SECTION
+
                 fprintf(stats_file, "%s %d %.4f\n", filename, size, timeDiff);
 
                 sem_post(&sem); //EXIT CRITICAL SECTION
