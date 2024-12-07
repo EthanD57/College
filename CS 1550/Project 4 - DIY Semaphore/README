@@ -1,0 +1,21 @@
+# Project 4 - DIY Semaphore
+
+## Overview
+This project involves implementing a semaphore mechanism from scratch. A semaphore is a synchronization primitive used to control access to a common resource in a concurrent system such as a multitasking operating system.
+
+## Objectives
+- Understand the concept of semaphores and their use in synchronization.
+- Implement semaphore operations (wait and signal).
+- Demonstrate the use of semaphores in solving synchronization problems.
+
+## Requirements
+1. Implement a semaphore structure with the following operations:
+    - `down()`
+    - `up()`
+2. Use the semaphore to solve a classic synchronization problem (e.g., producer-consumer).
+3. Provide a test program that demonstrates the correct functionality of your semaphore implementation.
+
+## Running the Program
+1. Compile the linux kernel with the provided sys.c, syscall_32.tbl, syscall_64.tbl, syscalls.h, and unistd.h files. 
+
+2. Compile and run the prodcons.c file with the number of producers, consumers, and the buffer size as arguments. 
