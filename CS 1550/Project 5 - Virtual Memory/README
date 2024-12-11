@@ -1,0 +1,10 @@
+This is a simulation that compares the performance of the LRU, OPT, RAND, and CLOCK eviction algorithms. 
+
+Usage:
+
+python vmsim.py -n <NUMBER OF FRAMES> -a <opt|rand|lru|clock> <tracefile path>
+
+Example:
+
+python vmsim.py -n 10 -a opt cc.trace
+
