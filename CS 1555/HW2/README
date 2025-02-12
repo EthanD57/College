@@ -1,0 +1,8 @@
+This is the first (HW1 was just a test submission) homework for CS 1555 - Database Managment at the
+University of Pittsburgh. 
+
+In this assignment, I was tasked with making two simple database schemas for an apartment building's database.
+
+These were based off of a textual representation given by the teacher.
+
+The enhanced-schema is very similar to the first, but it has integrity constraints enforced.
